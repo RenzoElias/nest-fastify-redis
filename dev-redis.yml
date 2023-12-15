@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  dev-redis:
+    image: redis:6.2-alpine
+    container_name: dev-redis
+    restart: always
+    command: redis-server --loglevel warning --requirepass mypassword
+    volumes:
+      - redis_volume_data:/data
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+
+volumes:
+  redis_volume_data:
